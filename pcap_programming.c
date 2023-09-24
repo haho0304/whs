@@ -56,8 +56,7 @@ void got_packet(u_char *args, const struct pcap_pkthdr *header,
   struct ethheader *eth = (struct ethheader *)packet;
 
   if (ntohs(eth->ether_type) == 0x0800) { // 0x0800 is IP type
-    struct ipheader * ip = (struct ipheader *)
-(packet + sizeof(struct ethheader)); 
+    struct ipheader * ip = (struct ipheader *)(packet + sizeof(struct ethheader)); 
     int ip_header_length = ip->iph_ihl * 4;
     struct tcpheader *tcp = (struct tcpheader *)(packet + sizeof(struct ethheader) + ip_header_length);
     
